@@ -1,4 +1,4 @@
-import { ChessBoard } from "./components/ChessBoard.ts";
+import { ChessBoard } from "./components/ChessBoard.tsx";
 import { Header } from "./components/Header.tsx";
 import { MoveHistory } from "./components/MoveHistory.tsx";
 import { GameControls } from "./components/GameControls.tsx";
