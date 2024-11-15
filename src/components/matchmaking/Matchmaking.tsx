@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGame } from '@/app/providers/GameProvider/GameContext';
+import { useGame } from '@/app/providers/GameProvider/GameContext.tsx';
 
 const Matchmaking: React.FC = () => {
   const { inQueue, joinQueue, leaveQueue } = useGame();

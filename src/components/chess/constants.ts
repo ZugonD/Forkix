@@ -1,4 +1,4 @@
-import { GameState, ChessBoard } from "./types";
+import { GameState, ChessBoard } from "notationix";
 
 export const INITIAL_BOARD: ChessBoard = [
     [

@@ -1,9 +1,8 @@
-import { useGame } from "@/app/providers/GameProvider/GameContext";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useGame } from "@/app/providers/GameProvider/GameContext.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { Card } from "@/components/ui/card.tsx";
+import { Badge } from "@/components/ui/badge.tsx";
 import { RotateCcw, Flag } from "lucide-react";
-
 
 export const Footer: React.FC = () => {
   const { resign, requestUndo } = useGame();

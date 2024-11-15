@@ -1,8 +1,9 @@
-import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@radix-ui/react-separator";
 import { useEffect, useRef } from "react";
-import { useGame } from "@/app/providers/GameProvider/GameContext";
+
+import { Card } from "@/components/ui/card.tsx";
+import { useGame } from "@/app/providers/GameProvider/GameContext.tsx";
 
 export const MoveHistory: React.FC = () => {
   const { gameState, player } = useGame();

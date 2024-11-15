@@ -1,5 +1,5 @@
 import { Socket } from 'socket.io-client';
-import { GameState, MoveData } from '../../../components/chess/types.js';
+import { GameState, MoveData } from 'notationix';
 
 export interface Player {
   id: string;

@@ -1,14 +1,12 @@
-import { Position, ChessBoard, GameState, ChessPiece } from '../types';
-import { boardUtils } from './boardUtils';
+import { Position, ChessBoard, GameState, ChessPiece } from 'notationix';
+import { boardUtils } from './boardUtils.ts';
 
 export const moveValidator = {
 
-  // New function to execute the move including castling
   executeMove: (from: Position, to: Position, board: ChessBoard): ChessBoard => {
     const newBoard = board.map(row => [...row]);
     const piece = newBoard[from.row][from.col];
 
-    // Handle castling
     if ((piece?.type === "♔" || piece?.type === "♚") && Math.abs(to.col - from.col) === 2) {
       const rookMove = moveValidator.getRookCastlingMove(from, to);
       if (rookMove) {
@@ -18,7 +16,6 @@ export const moveValidator = {
       }
     }
 
-    // Move the main piece
     newBoard[to.row][to.col] = piece;
     newBoard[from.row][from.col] = null;
 
@@ -45,7 +42,6 @@ export const moveValidator = {
     const isPlayable = !!piece && piece.color === currentPlayer && currentPlayer === playerColor;
     const isPossibleMove = boardUtils.isPositionInPossibleMoves(position, gameState.possibleMoves);
 
-    // Handle piece selection
     if (isPlayable) {
       const moves = moveValidator.getValidMoves(position, board, gameState);
       return {
@@ -56,7 +52,6 @@ export const moveValidator = {
       };
     }
 
-    // Handle move execution
     if (isPossibleMove && selectedSquare) {
       const from = selectedSquare;
       const to = position;
@@ -66,12 +61,10 @@ export const moveValidator = {
 
       const newBoard = moveValidator.executeMove(from, to, board);
       
-      // Handle en passant capture
       if (gameState.lastMove && moveValidator.shouldHandleEnPassant(movingPiece, from, to, gameState.lastMove)) {
         newBoard[gameState.lastMove.to.row][gameState.lastMove.to.col] = null;
       }
       
-      // Mark pieces as moved
       if (newBoard[to.row][to.col]) {
         moveValidator.markPieceAsMoved(newBoard, to);
       }
@@ -106,21 +99,17 @@ export const moveValidator = {
     return { newGameState: {} };
   },
 
-  // Update isValidMove to handle castling
   isValidMove: (from: Position, to: Position, board: ChessBoard, color: "white" | "black"): boolean => {
     const piece = board[from.row][from.col];
     if (!piece) return false;
 
-    // Check for castling
     if ((piece.type === "♔" || piece.type === "♚") && Math.abs(to.col - from.col) === 2) {
       const rookCol = to.col > from.col ? 7 : 0;
       return moveValidator.canCastle(from, { row: from.row, col: rookCol }, board, color);
     }
 
-    // Check if the target square is occupied by the same color
     if (board[to.row][to.col]?.color === piece.color) return false;
 
-    // Validate the move
     const attackMoves = moveValidator.getAttackMoves(from, board);
     return attackMoves.some(move => move.row === to.row && move.col === to.col);
   },
@@ -131,16 +120,13 @@ export const moveValidator = {
 
     let moves = moveValidator.getAttackMoves(position, board, gameState);
 
-    // Add castling moves if this is a king
     if ((piece.type === "♔" || piece.type === "♚") && !piece.hasMoved) {
       moves = [...moves, ...moveValidator.getCastlingMoves(position, board, piece.color)];
     }
 
-    // Filter out moves that would leave the king in check
     return moves.filter(move => {
       const newBoard = board.map(row => [...row]);
 
-      // Handle special case for castling
       if ((piece.type === "♔" || piece.type === "♚") &&
         Math.abs(move.col - position.col) === 2) {
         const rookMove = moveValidator.getRookCastlingMove(position, move);
@@ -151,7 +137,6 @@ export const moveValidator = {
         }
       }
 
-      // Move the piece
       newBoard[move.row][move.col] = piece;
       newBoard[position.row][position.col] = null;
 
@@ -169,7 +154,6 @@ export const moveValidator = {
 
     const moves: Position[] = [];
 
-    // Add linear moves based on piece type
     const addLinearMoves = (directions: number[][], stopAtFirst: boolean = false) => {
       for (const [dr, dc] of directions) {
         let r = position.row + dr;

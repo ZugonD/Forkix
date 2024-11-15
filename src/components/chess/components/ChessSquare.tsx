@@ -1,6 +1,6 @@
-import { useGame } from "@/app/providers/GameProvider/GameContext";
-import { ChessPiece, Position } from "../types";
-import { moveValidator, boardUtils } from "../utils";
+import { useGame } from "@/app/providers/GameProvider/GameContext.tsx";
+import { ChessPiece, Position } from "notationix";
+import { moveValidator, boardUtils } from "../utils/index.ts";
 
 export const ChessSquare: React.FC<{
   piece: ChessPiece | null;

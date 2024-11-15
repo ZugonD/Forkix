@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Flag, RotateCcw, Timer, Handshake } from 'lucide-react';
+
 import { 
   AlertDialog, 
   AlertDialogAction, 
@@ -9,13 +11,12 @@ import {
   AlertDialogHeader, 
   AlertDialogTitle, 
   AlertDialogTrigger 
-} from '@/components/ui/alert-dialog';
-import { Flag, RotateCcw, Timer, Handshake } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { useGame } from '@/app/providers/GameProvider/GameContext';
-import { SOCKET_EVENTS } from '@/app/providers/GameProvider/constants';
+} from '@/components/ui/alert-dialog.tsx';
+import { Button } from '@/components/ui/button.tsx';
+import { Card } from '@/components/ui/card.tsx';
+import { Badge } from '@/components/ui/badge.tsx';
+import { useGame } from '@/app/providers/GameProvider/GameContext.tsx';
+import { SOCKET_EVENTS } from '@/app/providers/GameProvider/constants.ts';
 
 export const GameControls: React.FC = () => {
   const {

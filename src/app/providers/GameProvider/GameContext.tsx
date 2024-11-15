@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
-import { GameState, MoveData } from "../../../components/chess/types";
-import { INITIAL_GAME_STATE } from "../../../components/chess/constants";
-import { SOCKET_EVENTS, STORAGE_KEYS } from "./constants";
-import { GameContextType, Player, GameSession } from "./types";
-import { boardUtils, moveValidator } from "../../../components/chess/utils/";
+import { GameState, MoveData } from "notationix";
+
+import { INITIAL_GAME_STATE } from "@/components/chess/constants.ts";
+import { boardUtils, moveValidator } from "@/components/chess/utils/index.ts";
+
+import { SOCKET_EVENTS, STORAGE_KEYS } from "./constants.ts";
+import { GameContextType, Player, GameSession } from "./types.ts";
 
 const GameContext = createContext<GameContextType | null>(null);
 

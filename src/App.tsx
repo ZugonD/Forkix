@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import ChessGame from '@/components/chess/ChessGame';
-import Matchmaking from '@/components/matchmaking/components/Matchmaking';
+import ChessGame from '@/components/chess/ChessGame.tsx';
+import Matchmaking from '@/components/matchmaking/Matchmaking.tsx';
 
 function App() {
   return (

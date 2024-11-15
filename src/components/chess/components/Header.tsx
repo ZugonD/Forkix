@@ -1,9 +1,9 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ChevronLeft, Crown } from "lucide-react";
-import { useGame } from "@/app/providers/GameProvider/GameContext";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft, Crown } from "lucide-react";
+
+import { Button } from "@/components/ui/button.tsx";
+import { Card } from "@/components/ui/card.tsx";
+import { useGame } from "@/app/providers/GameProvider/GameContext.tsx";
 
 export const Header: React.FC = () => {
   const { player, opponent, gameSession } = useGame();

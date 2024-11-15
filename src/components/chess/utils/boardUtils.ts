@@ -1,4 +1,4 @@
-import { ChessBoard, Position, ChessPiece } from "../types";
+import { ChessBoard, Position, ChessPiece } from "notationix";
 
 export const boardUtils = {
 

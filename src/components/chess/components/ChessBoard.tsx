@@ -1,7 +1,7 @@
-import { useGame } from "../../../app/providers/GameProvider/GameContext";
-import { Card } from "../../../components/ui/card";
-import { boardUtils } from "../utils";
-import { ChessSquare } from "./ChessSquare"
+import { useGame } from "@/app/providers/GameProvider/GameContext.tsx";
+import { Card } from "@/components/ui/card.tsx";
+import { boardUtils } from "../utils/index.ts";
+import { ChessSquare } from "./ChessSquare.tsx"
 // ChessBoard Component
 export const ChessBoard = () => {
   const { gameState, player } = useGame();

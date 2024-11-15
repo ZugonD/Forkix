@@ -74,7 +74,6 @@ button:focus-visible {
   display: inline-block; 
   width: 1em; 
 }
-	
 
 @media (prefers-color-scheme: light) {
   :root {

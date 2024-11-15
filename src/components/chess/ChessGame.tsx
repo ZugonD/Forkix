@@ -1,8 +1,7 @@
-import { useGame } from "@/app/providers/GameProvider/GameContext";
-import { ChessBoard } from "./components/ChessBoard";
-import { Header } from "./components/Header";
-import { MoveHistory } from "./components/MoveHistory";
-import { GameControls } from "./components/GameControls";
+import { ChessBoard } from "./components/ChessBoard.ts";
+import { Header } from "./components/Header.tsx";
+import { MoveHistory } from "./components/MoveHistory.tsx";
+import { GameControls } from "./components/GameControls.tsx";
 
 const ChessGame: React.FC = () => {
   return (
