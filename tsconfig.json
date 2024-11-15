@@ -10,8 +10,10 @@
     "strict": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
+    "types": ["vite/client"],
     "paths": {
       "@/*": ["src/*"]
     },
-  }
+  },
+  "include": ["src", "src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"]
 }
