@@ -41,10 +41,6 @@ export const ChessSquare: React.FC<{
 
   const handleClick = () => {
     if (!player?.isConnected || !opponent?.isConnected) return;
-
-    console.log('Current game state:', gameState);
-    console.log('Player:', player);
-    console.log('Current player:', gameState.currentPlayer);
     
     const { selectedSquare, currentPlayer, board } = gameState;
   

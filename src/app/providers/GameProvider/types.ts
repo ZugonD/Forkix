@@ -1,5 +1,5 @@
 import { Socket } from 'socket.io-client';
-import { GameState, MoveData } from 'notationix';
+import { ChessPiece, Position, GameState, MoveData } from 'notationix';
 
 export interface Player {
   id: string;
@@ -27,14 +27,16 @@ export interface GameContextState {
   opponent: Player | null;
   gameSession: GameSession | null;
   inQueue: boolean;
+  promotionState: {
+    isPromoting: boolean;
+    position?: Position;
+    piece?: ChessPiece;
+  };
 }
 
 export interface GameContextType extends GameContextState {
   makeMove: (moveData: MoveData) => void;
-  resign: () => void;
+  handlePromotion: (piece: string) => void;
   joinQueue: () => void;
-  leaveQueue: () => void;
-  requestUndo: () => void;
-  answerUndo: (accepted: boolean) => void;
   setGameState: React.Dispatch<React.SetStateAction<GameState>>; 
 }
