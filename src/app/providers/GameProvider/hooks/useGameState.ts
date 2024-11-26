@@ -12,47 +12,50 @@ export function useGameState() {
   }>({ isPromoting: false });
 
   const handleMove = useCallback((moveData: MoveData) => {
-    const newBoard = moveValidator.executeMove(moveData.from, moveData.to, gameState.board);
-    const newCurrentPlayer = gameState.currentPlayer === "white" ? "black" : "white";
-    
-    const kingPosition = boardUtils.findKingPosition(newBoard, newCurrentPlayer);
-    const isCheck = moveValidator.isInCheck(kingPosition, newBoard, newCurrentPlayer);
-    const isCheckmate = moveValidator.isCheckmate(kingPosition, newBoard, newCurrentPlayer);
-    
-    const moveNotation = moveValidator.generateMoveNotation(
-      moveData.piece,
-      moveData.from,
-      moveData.to,
-      isCheck,
-      isCheckmate
-    );
+    setGameState((prev) => {
+      const newBoard = moveValidator.executeMove(moveData.from, moveData.to, prev.board);
+      const newCurrentPlayer = prev.currentPlayer === "white" ? "black" : "white";
 
-    setGameState(prev => ({
-      ...prev,
-      board: newBoard,
-      currentPlayer: newCurrentPlayer,
-      moveHistory: [...prev.moveHistory, moveNotation],
-      lastMove: moveData,
-      selectedSquare: null,
-      possibleMoves: [],
-      isCheck,
-      isCheckmate,
-      isGameOver: isCheckmate
-    }));
-  }, [gameState.board, gameState.currentPlayer]);
+      const kingPosition = boardUtils.findKingPosition(newBoard, newCurrentPlayer);
+      const isCheck = moveValidator.isInCheck(kingPosition, newBoard, newCurrentPlayer);
+      const isCheckmate = moveValidator.isCheckmate(kingPosition, newBoard, newCurrentPlayer);
+
+      const moveNotation = moveValidator.generateMoveNotation(
+        moveData.piece,
+        moveData.from,
+        moveData.to,
+        isCheck,
+        isCheckmate
+      );
+
+      return {
+        ...prev,
+        board: newBoard,
+        currentPlayer: newCurrentPlayer,
+        moveHistory: [...prev.moveHistory, moveNotation],
+        lastMove: moveData,
+        selectedSquare: null,
+        possibleMoves: [],
+        isCheck,
+        isCheckmate,
+        isGameOver: isCheckmate
+      };
+    });
+  }, []);
+
 
   const handlePromotion = useCallback((selectedPiece: string) => {
     if (!promotionState.position || !promotionState.piece) return;
 
     const { position, piece } = promotionState;
     const newBoard = [...gameState.board];
-    
+
     const promotedPiece: ChessPiece = {
       type: selectedPiece,
       color: piece.color,
       hasMoved: true
     };
-    
+
     newBoard[position.row][position.col] = promotedPiece;
 
     const opponentColor = piece.color === "white" ? "black" : "white";
